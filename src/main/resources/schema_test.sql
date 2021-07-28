@@ -1,0 +1,19 @@
+-- DROP TABLE IF EXISTS app_user;
+--
+-- CREATE TABLE app_user
+-- (
+--     id       INT AUTO_INCREMENT PRIMARY KEY,
+--     name     VARCHAR(250) NOT NULL,
+--     username VARCHAR(250) NOT NULL,
+--     password VARCHAR(250) NOT NULL
+-- );
+--
+-- DROP TABLE IF EXISTS app_user_roles;
+-- CREATE TABLE app_user_roles
+-- (
+--     app_user_id INT AUTO_INCREMENT PRIMARY KEY,
+--     roles       VARCHAR(250) NOT NULL,
+--
+-- );
+--
+--
