@@ -8,7 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -44,7 +48,7 @@ public class AppUserRestController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<AppUser> userById(@PathVariable Long id) {
-        AppUser appUser = appUserRepository.findOne(id);
+        AppUser appUser = appUserRepository.findById(id).get();
         if (appUser == null) {
             return new ResponseEntity<AppUser>(HttpStatus.NO_CONTENT);
         } else {
@@ -61,7 +65,7 @@ public class AppUserRestController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<AppUser> deleteUser(@PathVariable Long id) {
-        AppUser appUser = appUserRepository.findOne(id);
+        AppUser appUser = appUserRepository.findById(id).get();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedUsername = auth.getName();
         if (appUser == null) {
